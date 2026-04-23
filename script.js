@@ -362,8 +362,25 @@ const typeReason = document.getElementById("type-reason");
 const meaning = document.getElementById("meaning");
 const recommendations = document.getElementById("recommendations");
 const regenerate = document.getElementById("regenerate");
+const questionGroups = Array.from(document.querySelectorAll(".trait-group"));
+const progressLabel = document.getElementById("question-progress");
+const prevQuestionButton = document.getElementById("prev-question");
+const nextQuestionButton = document.getElementById("next-question");
+const submitButton = document.getElementById("submit-form");
 
 let lastOptions = null;
+let currentQuestionIndex = 0;
+
+function renderQuestionStep() {
+  questionGroups.forEach((group, index) => {
+    group.classList.toggle("hidden", index !== currentQuestionIndex);
+  });
+
+  progressLabel.textContent = `질문 ${currentQuestionIndex + 1} / ${questionGroups.length}`;
+  prevQuestionButton.classList.toggle("hidden", currentQuestionIndex === 0);
+  nextQuestionButton.classList.toggle("hidden", currentQuestionIndex === questionGroups.length - 1);
+  submitButton.classList.toggle("hidden", currentQuestionIndex !== questionGroups.length - 1);
+}
 
 function renderResult(options) {
   const list = generateRecommendations(options);
@@ -381,6 +398,22 @@ function renderResult(options) {
   emptyState.classList.add("hidden");
   card.classList.remove("hidden");
 }
+
+nextQuestionButton.addEventListener("click", () => {
+  if (currentQuestionIndex >= questionGroups.length - 1) {
+    return;
+  }
+  currentQuestionIndex += 1;
+  renderQuestionStep();
+});
+
+prevQuestionButton.addEventListener("click", () => {
+  if (currentQuestionIndex <= 0) {
+    return;
+  }
+  currentQuestionIndex -= 1;
+  renderQuestionStep();
+});
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -408,3 +441,5 @@ regenerate.addEventListener("click", () => {
   }
   renderResult(lastOptions);
 });
+
+renderQuestionStep();

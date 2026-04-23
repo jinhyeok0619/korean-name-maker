@@ -63,6 +63,12 @@ body {
   gap: 0.75rem;
 }
 
+.question-progress {
+  margin: 0.2rem 0 0.1rem;
+  color: #4e5968;
+  font-weight: 600;
+}
+
 .trait-group {
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -131,6 +137,15 @@ button {
 
 button:hover {
   background: var(--primary-hover);
+}
+
+.question-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.question-actions button {
+  flex: 1;
 }
 
 .secondary {

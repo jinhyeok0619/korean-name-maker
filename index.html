@@ -29,6 +29,8 @@
           <option value="masculine">남성 느낌</option>
         </select>
 
+        <p id="question-progress" class="question-progress" aria-live="polite"></p>
+
         <fieldset class="trait-group">
           <legend>Q1. 나는 사람들과 어울릴 때 에너지를 더 얻는다.</legend>
           <select name="qe1"><option value="1">1 매우 그렇지 않다</option><option value="2">2 그렇지 않다</option><option value="3" selected>3 보통이다</option><option value="4">4 그렇다</option><option value="5">5 매우 그렇다</option></select>
@@ -89,7 +91,11 @@
           <select name="ql3"><option value="1">1 매우 그렇지 않다</option><option value="2">2 그렇지 않다</option><option value="3" selected>3 보통이다</option><option value="4">4 그렇다</option><option value="5">5 매우 그렇다</option></select>
         </fieldset>
 
-        <button type="submit">이름 추천 받기</button>
+        <div class="question-actions">
+          <button id="prev-question" type="button" class="secondary hidden">이전 질문</button>
+          <button id="next-question" type="button">다음 질문</button>
+          <button id="submit-form" type="submit" class="hidden">이름 추천 받기</button>
+        </div>
       </form>
     </section>
 
